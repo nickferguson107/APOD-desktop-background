@@ -49,7 +49,7 @@ try:
     ctypes.windll.user32.SystemParametersInfoW(20, 0, str(image_path), 0)
     print("Image set as background.")
 except TypeError:
-    print("Update failed - APOD item not image. Waiting 1 day to update.")
+    print("Update failed - APOD item is video. Waiting 1 day to update.")
     time.sleep(84600)
 
 while True:
@@ -59,13 +59,13 @@ while True:
         next_day_name, _ = get_image()
         if next_day_name == today_name:
             print("APOD image not changed from last check.")
-            time.sleep(600)
             print("Waiting 10 minutes for next check.")
+            time.sleep(600)
         else:
             print("Updating at {}".format(str(current_time.time())))
             job()
             time.sleep(43200)
             print("Waiting 12 hours before next check.")
     except TypeError:
-        print("Update failed - APOD item not image. Waiting 1 day to update.")
+        print("Update failed - APOD item is video. Waiting 1 day to update.")
         time.sleep(86400)
